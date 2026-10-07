@@ -229,6 +229,49 @@ h2{margin:0;font-family:var(--f-calm);font-weight:600;font-size:26px;line-height
 .about p{margin:0}
 .disc{font-size:15px;color:var(--muted);border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin:0}
 
+/* safety card + guide */
+:root{--warn-bg:#FFF4E5;--warn-line:#F0C98A;--warn-ink:#7A4A06;--sos:#B3261E;--z0:#D9826B;--z1:#E3BE73;--z2:#7FC8A9;--z3:#2E9E8F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--warn-bg:#3A2A12;--warn-line:#7A5A26;--warn-ink:#F6D9A6;--sos:#FF8A80}}
+:root[data-theme="dark"]{--warn-bg:#3A2A12;--warn-line:#7A5A26;--warn-ink:#F6D9A6;--sos:#FF8A80}
+.safe{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:var(--r);padding:16px;color:var(--ink)}
+.safe>svg{width:30px;height:30px;color:var(--warn-ink)}
+.safe>div{min-width:0;display:grid;gap:8px}
+.safe h3{margin:0;font-size:19px;line-height:1.3;color:var(--warn-ink)}
+.safe p,.safe ul{margin:0}
+.safe ul{padding-left:20px;display:grid;gap:4px}
+.safe .sos{font-weight:700;color:var(--sos)}
+.hw-h{margin:6px 0 0;font-family:var(--f-calm);font-weight:600;font-size:23px}
+.hw{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 16px}
+.hw+.hw{margin-top:-8px}
+.hw summary{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:18px;cursor:pointer;list-style:none}
+.hw summary::-webkit-details-marker{display:none}
+.hw summary::after{content:"+";font-size:26px;font-weight:400;color:var(--cyan);flex:none}
+.hw[open] summary::after{content:"\2212"}
+.hw[open]{padding-bottom:16px}
+.hw p{margin:0 0 10px}
+.hw ul{margin:0;padding-left:22px;display:grid;gap:6px}
+.beats{margin:6px 0 0;display:grid;gap:4px}
+.beats figcaption{font-size:15px;font-weight:700;color:var(--muted)}
+.beats svg{width:100%;height:auto;max-width:100%}
+.beats .bl{stroke:var(--line);stroke-width:2}
+.beats .pk{fill:none;stroke:var(--cyan);stroke-width:3;stroke-linejoin:round}
+.beats .pk.t{stroke:var(--z0)}
+.beats text{fill:var(--muted);font-size:13px;font-family:var(--f-ui);font-variant-numeric:tabular-nums}
+.scale{display:grid;gap:6px;margin:4px 0 12px}
+.scale .bar{display:grid;grid-template-columns:40fr 15fr 15fr 30fr;height:14px;border-radius:999px;overflow:hidden}
+.scale .ticks{position:relative;height:18px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.scale .ticks span{position:absolute;transform:translateX(-50%)}
+.scale .ticks span:nth-child(1){left:0;transform:none}.scale .ticks span:nth-child(2){left:40%}.scale .ticks span:nth-child(3){left:55%}.scale .ticks span:nth-child(4){left:70%}.scale .ticks span:nth-child(5){left:auto;right:0;transform:none}
+.z0{background:var(--z0)}.z1{background:var(--z1)}.z2{background:var(--z2)}.z3{background:var(--z3)}
+.scale .lv{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:6px}
+.scale .lv li{display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums}
+.scale .lv b{width:16px;height:16px;border-radius:50%;flex:none}
+.scale .lv span{font-weight:700}
+.hrvt{border-collapse:collapse;width:100%;margin:0 0 12px;font-variant-numeric:tabular-nums}
+.hrvt th,.hrvt td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+.hrvt th{font-size:14px;color:var(--muted);font-weight:700}
+.pl-safe{margin:0;font-size:16px;opacity:.85;text-align:center}
+.pl-note{margin:0;width:100%;background:rgba(227,190,115,.14);border:1px solid rgba(227,190,115,.4);border-radius:14px;padding:12px 14px;font-size:17px;line-height:1.45;color:#F6E7C4;text-align:left}
 /* offer sheet */
 .offer{position:fixed;inset:0;z-index:25;background:rgba(2,20,36,.55);display:flex;align-items:flex-end;justify-content:center}
 .offer .sheet{background:var(--surface);color:var(--ink);width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
@@ -341,7 +384,28 @@ h2{margin:0;font-family:var(--f-calm);font-weight:600;font-size:26px;line-height
       </div>
       <button class="ghost" id="cpDemo" data-i="cpDemoBtn"></button>
       <div id="cpHistWrap" hidden><p class="label" data-i="cpRecent"></p><div class="cp-hist" id="cpHist"></div></div>
-      <div class="about"><h3 data-i="cpHowT"></h3><p data-i="cpHow1"></p><p data-i="cpHow2"></p><p data-i="cpHow3"></p><p data-i="cpHow4"></p></div>
+      <div class="safe" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>
+        <div><h3 data-i="sfT"></h3><p data-i="sfP1"></p><p data-i="sfP2"></p><ul><li data-i="sfL1"></li><li data-i="sfL2"></li><li data-i="sfL3"></li></ul><p class="sos" data-i="sfSOS"></p><p data-i="sfStop"></p></div>
+      </div>
+      <h3 class="hw-h" data-i="hwT"></h3>
+      <details class="hw" open><summary data-i="hw1T"></summary><p data-i="cpHow1"></p><p data-i="hw1P"></p></details>
+      <details class="hw"><summary data-i="hw2T"></summary><p data-i="hw2P"></p>
+        <figure class="beats">
+          <figcaption data-i="hw2Relax"></figcaption>
+          <svg viewBox="0 0 340 64" aria-hidden="true"><path class="bl" d="M6 46H334"/><path class="pk" d="M22 46l6-34 6 34M100 46l6-34 6 34M188 46l6-34 6 34M268 46l6-34 6 34"/><text x="64" y="62">0.82 s</text><text x="150" y="62">0.88 s</text><text x="234" y="62">0.85 s</text></svg>
+          <figcaption data-i="hw2Tense"></figcaption>
+          <svg viewBox="0 0 340 64" aria-hidden="true"><path class="bl" d="M6 46H334"/><path class="pk t" d="M22 46l6-34 6 34M104 46l6-34 6 34M186 46l6-34 6 34M268 46l6-34 6 34"/><text x="66" y="62">0.80 s</text><text x="148" y="62">0.80 s</text><text x="230" y="62">0.80 s</text></svg>
+        </figure></details>
+      <details class="hw"><summary data-i="hw3T"></summary><p data-i="hw3P1"></p><p data-i="hw3P2"></p><p data-i="hw3P3"></p></details>
+      <details class="hw"><summary data-i="hw4T"></summary><p data-i="hw4P"></p>
+        <div class="scale"><div class="bar"><i class="z0"></i><i class="z1"></i><i class="z2"></i><i class="z3"></i></div>
+          <div class="ticks"><span>0</span><span>40</span><span>55</span><span>70</span><span>100</span></div>
+          <ul class="lv"><li><b class="z3"></b><span data-lv="0"></span> 70–100</li><li><b class="z2"></b><span data-lv="1"></span> 55–69</li><li><b class="z1"></b><span data-lv="2"></span> 40–54</li><li><b class="z0"></b><span data-lv="3"></span> 0–39</li></ul></div>
+        <table class="hrvt"><thead><tr><th data-i="hw4Hrv"></th><th data-i="hw4Sc"></th></tr></thead><tbody><tr><td>10 ms</td><td>46</td></tr><tr><td>20 ms</td><td>60</td></tr><tr><td>40 ms</td><td>74</td></tr><tr><td>60 ms</td><td>82</td></tr></tbody></table>
+        <p data-i="hw4P2"></p></details>
+      <details class="hw"><summary data-i="hw5T"></summary><p data-i="cpHow3"></p><ul><li data-i="hw5L1"></li><li data-i="hw5L2"></li><li data-i="hw5L3"></li><li data-i="hw5L4"></li><li data-i="hw5L5"></li></ul></details>
+      <details class="hw"><summary data-i="hw6T"></summary><ul><li data-i="cpHow4"></li><li data-i="hw6L1"></li><li data-i="hw6L2"></li><li data-i="hw6L3"></li></ul></details>
       <p class="disc" data-i="cpDisc"></p>
     </section>
   </main>
@@ -382,6 +446,7 @@ h2{margin:0;font-family:var(--f-calm);font-weight:600;font-size:26px;line-height
     <div id="plIntro" class="pl-wrap" style="min-height:0">
       <svg class="pl-fig" viewBox="0 0 160 160" aria-hidden="true"><rect x="38" y="14" width="84" height="132" rx="16" fill="none" stroke="#8FDCF8" stroke-width="4"/><circle cx="62" cy="40" r="9" fill="none" stroke="#8FDCF8" stroke-width="3"/><circle cx="84" cy="40" r="4" fill="#F1D49A"/><path d="M48 92c6-30 16-50 26-50s14 10 14 22v34" fill="#E7B49A" stroke="#C98B70" stroke-width="3"/><ellipse cx="68" cy="42" rx="17" ry="13" fill="#E7B49A" stroke="#C98B70" stroke-width="3"/></svg>
       <ol class="pl-steps"><li data-i="plStep1"></li><li data-i="plStep2"></li><li data-i="plStep3"></li></ol>
+      <p class="pl-safe" data-i="plSafe"></p>
       <p class="pl-err" id="plErr" hidden></p>
       <button class="pl-btn" id="plStart" data-i="plStart"></button>
       <button class="pl-btn2" id="plDemo" data-i="cpDemoBtn"></button>
@@ -428,6 +493,30 @@ const T={
   remind:["Relax your shoulders.","If your mind wanders, that is okay. Gently come back to your breath.","You are doing well.","Feel your body becoming calm and steady.","Let your face soften."],
   closing:["Now, let your breath return to its natural rhythm.","Gently move your fingers and toes.","When you are ready, slowly open your eyes.","Thank you for taking this time for yourself."],
   tIntro:["Let us begin. Sit comfortably, and rest your attention on your breath."],tEnd:["The bell has rung. Slowly open your eyes. Thank you for sitting."],
+  hwT:"Understanding your Calm Pulse",
+  hw1T:"1. What the camera sees",hw1P:"The app watches this tiny change in colour about 30 times a second. Each dark dip is one heartbeat.",
+  hw2T:"2. Your heartbeat is not a clock",hw2P:"A healthy heart does not tick like a clock. The gap between beats changes a little all the time, for example 0.82 seconds, then 0.88, then 0.85. This natural change is called heart rate variability (HRV). The app measures it in milliseconds (ms).",
+  hw2Relax:"Relaxed: the gaps change gently",hw2Tense:"Tense: the gaps stay almost the same",
+  hw3T:"3. Why a higher number is better",
+  hw3P1:"When you are relaxed, the calming part of your nervous system (the “rest and digest” system) gently adjusts your heartbeat with each breath. It speeds up a little as you breathe in and slows down as you breathe out. The gaps between beats vary more, so HRV goes up.",
+  hw3P2:"When you are stressed, worried, tired or unwell, the body switches to “alert” mode. The heartbeat becomes more fixed, the gaps vary less, and HRV goes down.",
+  hw3P3:"So a higher score means your body is more relaxed and better able to adapt. Think of a tree in the wind: a flexible branch bends and springs back, while a stiff branch cannot.",
+  hw4T:"4. How the score is worked out",hw4P:"The app turns your HRV into a simple score from 0 to 100. More HRV gives a higher score. Each extra millisecond counts a little less, so the score stays steady and easy to compare.",
+  hw4Hrv:"Your HRV",hw4Sc:"Calm score",
+  hw4P2:"Your heart rate usually drops a little after meditation too. That is another sign that your body is settling.",
+  hw5T:"5. What else can change your reading",
+  hw5L1:"Coffee, tea or smoking in the past hour",hw5L2:"Exercise or a big meal in the past hour",hw5L3:"A poor night's sleep, a cold, or feeling unwell",hw5L4:"Talking, moving or cold fingers while measuring",hw5L5:"Some medicines, such as those for blood pressure or heart rhythm",
+  hw6T:"6. Tips for a good reading",hw6L1:"Measure at about the same time of day, in the same position.",hw6L2:"Rest your hand on a table and press the camera lightly. Pressing hard blocks the blood flow.",hw6L3:"Breathe normally and stay quiet until the countdown ends.",
+  sfT:"Important: this is not a medical tool",
+  sfP1:"Calm Pulse is for wellness and education only. It is not a medical device. It cannot find or rule out heart problems, and a good score does not mean your heart is healthy.",
+  sfP2:"Please see a doctor if you often notice:",
+  sfL1:"a heartbeat that feels very irregular, skips, flutters or pounds",sfL2:"a heart rate that stays very fast or very slow while you rest",sfL3:"unusual readings in this app even when you sit still",
+  sfSOS:"Call 995 at once if you have chest pain or pressure, trouble breathing, fainting, or sudden weakness.",
+  sfStop:"If you feel dizzy or unwell during a measurement, stop and rest.",
+  plSafe:"Not a medical device. If you feel unwell, stop and rest.",
+  poorDoc:"If your heartbeat often feels irregular, please check with a doctor.",
+  hrFast:"Your heart rate looked fast for someone at rest. If this happens often, or you feel unwell, please see a doctor.",
+  hrSlow:"Your heart rate looked slow for someone at rest. If this happens often, or you feel dizzy or tired, please see a doctor.",
   cpAskT:"Calm Pulse check",cpAskH:"Offer a 1-minute fingertip heart reading before and after.",
   tPulse:"Calm Pulse",cpTitle:"Calm Pulse",cpLine:"See how your body settles. Measure before and after you meditate, using your phone's camera.",
   cpMeasureBefore:"Measure before",cpMeasureAfter:"Measure after",cpDemoBtn:"Try a demo (no camera)",
@@ -437,7 +526,7 @@ const T={
   cpHow2:"The app counts the beats for heart rate and measures how much the gap between beats changes (HRV). HRV is usually higher when relaxed.",
   cpHow3:"HRV is naturally lower with age, so compare with your own earlier readings, not other people's.",
   cpHow4:"For a reliable comparison, sit for 2 minutes before measuring and measure the same way each time.",
-  cpDisc:"For wellness and education only. Not a medical device and does not diagnose any condition.",
+  cpDisc:"For wellness and education only. Not a medical device and does not diagnose any condition. 仅供健康与教育用途，并非医疗器材，不能用于诊断。",
   offerT:"Check your calm first?",offerP:"A 1-minute fingertip reading now, and another when you finish, shows how much your body settled.",
   offerMeasure:"Measure before (1 min)",offerSkip:"Skip, start now",
   cancel:"Cancel",skip:"Skip",plBefore:"Measure before",plAfter:"Measure after",plDemoT:"Demo",
@@ -490,6 +579,30 @@ const T={
   remind:["放松双肩。","如果心思飘走了，没关系，轻轻回到呼吸上。","你做得很好。","感受身体慢慢变得平静、安稳。","让脸部放松下来。"],
   closing:["现在，让呼吸回到自然的节奏。","轻轻动一动手指和脚趾。","准备好了，就慢慢睁开眼睛。","感恩你给自己这一段宁静的时光。"],
   tIntro:["我们开始吧。请舒适坐好，把注意力轻轻放在呼吸上。"],tEnd:["铃声响起。请慢慢睁开眼睛。感恩你的静坐。"],
+  hwT:"认识你的平静指数",
+  hw1T:"1. 相机看到了什么",hw1P:"应用程序每秒约 30 次观察指尖颜色的细微变化。每一次变暗，就是一次心跳。",
+  hw2T:"2. 心跳不是时钟",hw2P:"健康的心脏不会像时钟一样一成不变。每两次心跳之间的间隔，时时都有一点变化，例如 0.82 秒、0.88 秒、0.85 秒。这种自然的变化叫做“心率变异性”（HRV），以毫秒（ms）计算。",
+  hw2Relax:"放松时：间隔会温和地变化",hw2Tense:"紧张时：间隔几乎一样",
+  hw3T:"3. 为什么数字越高越好",
+  hw3P1:"放松时，神经系统中负责“休息与消化”的部分，会随着每一次呼吸轻轻调整心跳：吸气时稍快，呼气时稍慢。心跳间隔的变化就比较大，所以心率变异性升高。",
+  hw3P2:"当你感到压力、担心、疲倦或身体不适时，身体会进入“警戒”状态。心跳变得比较固定，间隔变化变小，心率变异性就下降。",
+  hw3P3:"所以，分数越高，代表身体越放松、越能灵活应变。就像风中的树：柔软的树枝会弯下又弹回，僵硬的树枝却做不到。",
+  hw4T:"4. 分数是怎么算的",hw4P:"应用程序把心率变异性换算成 0 到 100 的简单分数。变异性越大，分数越高；但每多 1 毫秒，加的分会慢慢变少，所以分数稳定，方便比较。",
+  hw4Hrv:"心率变异性",hw4Sc:"平静指数",
+  hw4P2:"静心练习后，心率通常也会稍微下降，这也是身体放松下来的信号。",
+  hw5T:"5. 还有什么会影响读数",
+  hw5L1:"一小时内喝了咖啡、茶或吸烟",hw5L2:"一小时内运动或吃了大餐",hw5L3:"睡得不好、感冒或身体不适",hw5L4:"测量时说话、移动或手指冰冷",hw5L5:"某些药物，例如降血压或治疗心律的药",
+  hw6T:"6. 测得准的小贴士",hw6L1:"每天大约同一时间、同一姿势测量。",hw6L2:"把手放在桌上，轻轻按住相机。按得太用力会阻挡血流。",hw6L3:"正常呼吸，保持安静，直到倒数结束。",
+  sfT:"重要提醒：这不是医疗工具",
+  sfP1:"平静指数仅供健康与教育用途，并非医疗器材。它不能发现或排除心脏问题；分数好，也不代表心脏一定健康。",
+  sfP2:"如果你经常发现以下情况，请去看医生：",
+  sfL1:"心跳感觉很不规律、漏跳、乱跳或怦怦重跳",sfL2:"休息时心率一直很快或很慢",sfL3:"即使静坐不动，本应用的读数也经常不寻常",
+  sfSOS:"如果出现胸痛或胸闷、呼吸困难、晕倒或突然无力，请立即拨打 995。",
+  sfStop:"测量时如果感到头晕或不舒服，请停止并休息。",
+  plSafe:"并非医疗器材。如果感到不舒服，请停止并休息。",
+  poorDoc:"如果你经常觉得心跳不规律，请去看医生检查。",
+  hrFast:"以休息状态来说，你的心率偏快。如果经常这样，或感到不舒服，请去看医生。",
+  hrSlow:"以休息状态来说，你的心率偏慢。如果经常这样，或感到头晕、疲倦，请去看医生。",
   cpAskT:"平静指数检测",cpAskH:"练习前后，用指尖做 1 分钟心率测量。",
   tPulse:"平静指数",cpTitle:"平静指数",cpLine:"用手机相机，在静心前后各测一次，看看身体放松了多少。",
   cpMeasureBefore:"练习前测量",cpMeasureAfter:"练习后测量",cpDemoBtn:"示范（不用相机）",
@@ -499,7 +612,7 @@ const T={
   cpHow2:"应用程序数心跳来计算心率，并测量心跳间隔的变化（心率变异性）。身体放松时通常较高。",
   cpHow3:"年纪越大，心率变异性自然越低，请和自己以前的记录比较。",
   cpHow4:"测量前先静坐 2 分钟，每次用同样方式测量。",
-  cpDisc:"仅供健康与教育用途，并非医疗器材，不能用于诊断。",
+  cpDisc:"仅供健康与教育用途，并非医疗器材，不能用于诊断。For wellness and education only. Not a medical device and does not diagnose any condition.",
   offerT:"先测一测平静指数？",offerP:"现在用指尖测 1 分钟，练习结束后再测一次，就能看到身体放松了多少。",
   offerMeasure:"练习前测量（1 分钟）",offerSkip:"跳过，直接开始",
   cancel:"取消",skip:"跳过",plBefore:"练习前测量",plAfter:"练习后测量",plDemoT:"示范",
@@ -559,7 +672,7 @@ function render(){
   $('tmins').innerHTML=[5,10,15,20].map(m=>`<button id="tm-${m}" data-m="${m}" aria-pressed="${m===tmins}">${m}</button>`).join('');
   if(!timer.on) $('dialTime').textContent=mmss(tmins*60);
   $('sw-voice').setAttribute('aria-checked',voiceOn); $('sw-chime').setAttribute('aria-checked',chimeOn); $('sw-int').setAttribute('aria-checked',intOn);
-  $('sw-cp').setAttribute('aria-checked',cpAsk);
+  $('sw-cp').setAttribute('aria-checked',cpAsk); document.querySelectorAll('[data-lv]').forEach(e=>e.textContent=L().lvl[+e.dataset.lv]);
   renderSounds(); renderPulse();
   $('pause').textContent=sess.paused||timer.paused?L().resume:L().pause;
 }
@@ -1019,7 +1132,7 @@ function cpFinish(){
   const ts=CP.ts.slice(), vals=cpCh().slice(); cpStop(); CP.state='idle';
   const res=cpAnalyze(ts,vals), box=$('plResult'); $('plMeasure').hidden=true; box.hidden=false; $('pulse').scrollTop=0;
   if(!res||res.quality==='poor'||!res.rmssd||!res.hr){
-    box.innerHTML=`<p class="pl-err">${L().poor}</p><div class="pl-acts"><button class="pl-btn" id="plRetry">${L().tryAgain}</button><button class="pl-btn2" id="plDone">${CP.then?(CP.kind==='before'?L().offerSkip:L().cont):L().done}</button></div>`; return }
+    box.innerHTML=`<p class="pl-err">${L().poor}</p><p class="pl-note">${L().poorDoc}</p><div class="pl-acts"><button class="pl-btn" id="plRetry">${L().tryAgain}</button><button class="pl-btn2" id="plDone">${CP.then?(CP.kind==='before'?L().offerSkip:L().cont):L().done}</button></div>`; return }
   const r={score:cpScore(res.rmssd),hr:res.hr,rmssd:res.rmssd,at:Date.now()}; CP.last=r;
   if(!CP.demo&&CP.camId) LS.set('camId',CP.camId);
   let saved=L().demoNote, cmp='';
@@ -1032,7 +1145,7 @@ function cpFinish(){
   box.innerHTML=`<div class="pl-score">${r.score}<small>/100</small></div><p class="pl-level">${cpLevel(r.score)}</p>
     <span class="pl-q ${res.quality}">${res.quality==='good'?L().qGood:L().qFair}</span>
     <div class="pl-stats"><div><b>${Math.round(r.hr)}<small> bpm</small></b><span>${L().rHr}</span></div><div><b>${Math.round(r.rmssd)}<small> ms</small></b><span>${L().rHrv}</span></div><div><b>${res.beats}</b><span>${L().rBeats}</span></div></div>
-    ${cmp?`<p class="pl-cmp">${cmp}</p>`:''}<p class="pl-saved">${saved}</p>
+    ${cmp?`<p class="pl-cmp">${cmp}</p>`:''}${!CP.demo&&(r.hr>=120||r.hr<=45)?`<p class="pl-note">${r.hr>=120?L().hrFast:L().hrSlow}</p>`:''}<p class="pl-saved">${saved}</p>
     <div class="pl-acts">${CP.then?`<button class="pl-btn" id="plGo">${CP.thenLabel||L().beginNow}</button>`:
       (CP.demo?`<button class="pl-btn" id="plDone">${L().done}</button>`:`<button class="pl-btn" id="plCal">${ICO_CAL}<span>${L().calI}</span></button><button class="pl-btn2" id="plDone">${L().done}</button>`)}</div>`;
 }
