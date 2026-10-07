@@ -181,6 +181,22 @@ h2{margin:0;font-family:var(--f-calm);font-weight:600;font-size:26px;line-height
 @media (prefers-reduced-motion: reduce){.hero img{animation:none}.snd .wave i{animation:none;height:12px}.snd img{transition:none}.orb{transition-duration:1s!important}.orb.hold{animation:none}.sw,.sw::after{transition:none}}
 
 /* done card: quote + calendar */
+.done>*{flex-shrink:0}
+.done svg.ok{width:76px;height:76px}
+.done .d-line{font-size:18px;opacity:.92}
+.d-res{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;width:100%;background:rgba(69,194,240,.12);border-radius:16px;padding:12px}
+.d-res div{display:flex;flex-direction:column;align-items:center;min-width:80px}
+.d-res div span{font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.d-res b{font-size:34px;font-variant-numeric:tabular-nums;line-height:1.1}
+.d-res .arr{font-size:26px;opacity:.7}
+.d-res p{flex-basis:100%;margin:0;font-weight:600;font-size:16.5px}
+.d-quote{margin:4px 0 0;width:100%;display:grid;justify-items:center;gap:6px;padding:14px 12px 16px;border-radius:18px;background:rgba(227,190,115,.1);border:1px solid rgba(227,190,115,.3)}
+.d-quote .qi{width:44px;height:44px;color:#E3BE73;padding:9px;border-radius:50%;background:rgba(227,190,115,.16);box-sizing:content-box}
+.d-quote figcaption{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E3BE73}
+.d-quote blockquote{margin:0;font-family:var(--f-calm);font-size:19.5px;line-height:1.5;color:#F6E7C4}
+.done .d-go{background:#45C2F0;color:#021A2E;border:0}
+.done .d-link{background:none;border:0;color:#EAF4FA;opacity:.75;text-decoration:underline;min-height:48px;font-size:16px;font-weight:600}
+.pl-btn{display:flex;align-items:center;justify-content:center;gap:10px}.pl-btn svg{width:22px;height:22px}
 .done .quote{font-family:var(--f-calm);font-size:19px;line-height:1.5;opacity:1;color:#F6E7C4;padding:6px 10px}
 .done .acts{display:grid;gap:10px;width:100%;margin-top:6px}
 .done .acts button{min-height:62px;border-radius:999px;font-size:17.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 18px;line-height:1.2}
@@ -439,9 +455,11 @@ const T={
   poor:"The signal was not clear enough. Rest your hand on a table, cover the camera completely and press lightly, then try again.",
   tryAgain:"Try again",done:"Done",beginNow:"Begin meditation",
   same:"About the same.",calmer:"{n} points calmer than before.",tenser:"{n} points more tense than before.",hrDown:" Heart rate down {n} bpm.",hrUp:" Heart rate up {n} bpm.",
-  doneLine2:"You practised {m} of {x}.",modeTimer:"quiet sitting",
-  calG:"Use Google Calendar instead",calI:"Add to my phone calendar",calHint:"Your phone's calendar opens with today's practice filled in. Tap Save or Add.",measureAfter:"Measure after (1 min)",
-  calTitle:"\u2713 Meditation done \u00b7 {x} \u00b7 {m}",calDesc:"Tzu Chi Calm Breath\n\nCompleted: {x}, {m}.",calCalm:"Calm score: {a} \u2192 {b}",
+  doneLine2:"You completed {m} of {x}.",doneLineP:"You completed {m} of {x} (planned {p}).",modeTimer:"quiet sitting",appName2:"Tzu Chi Calm Breath",cont:"Continue",
+  doneCal:"Done \u00b7 Add to my phone calendar",closeNoCal:"Close without adding",measureCalm:"Check my calm (1 min)",
+  calDone:"\u2705 Completed: {x}, {m}",calDoneP:"\u2705 Completed: {x}, {m} (planned {p})",calVitals:"Heart rate {h1} \u2192 {h2} bpm \u00b7 HRV {v1} \u2192 {v2} ms",calOne:"Calm Pulse: {s}/100 ({l}) \u00b7 Heart rate {h} bpm \u00b7 HRV {v} ms",calTitleR:"\u2764\uFE0F Calm Pulse {s}/100",
+  calG:"Use Google Calendar instead",calI:"Add to my phone calendar",calHint:"Your calendar opens with today's practice, your Calm Pulse results and a quote filled in. Just tap Save.",measureAfter:"Measure after (1 min)",
+  calTitle:"\u2713 Meditation done \u00b7 {x} \u00b7 {m}",calDesc:"Tzu Chi Calm Breath\n\nCompleted: {x}, {m}.",calCalm:"Calm Pulse: before {a} \u2192 after {b}",
   tooShort:"Short session, not logged. Come back whenever you are ready.",
   quotes:["Every calm breath is a small gift to yourself.","A quiet mind sees the day more clearly.","Slow down. You are exactly where you need to be.","Small steps every day build a strong and peaceful heart.","Breathe in kindness, breathe out worry.","Be gentle with yourself today, and gentle with others too.","Peace begins with one slow breath.","You made time for yourself today. That matters.","A grateful heart is a calm heart.","Let this calm carry you through the rest of your day."],
   tBreathe:"Breathe",tSounds:"Sounds",tTimer:"Timer",tProgress:"Progress"},
@@ -499,9 +517,11 @@ const T={
   poor:"信号不够清楚。请把手放在桌上，完全盖住相机并轻轻按着，然后再试一次。",
   tryAgain:"再试一次",done:"完成",beginNow:"开始静心练习",
   same:"差不多。",calmer:"比之前放松了 {n} 分。",tenser:"比之前紧张了 {n} 分。",hrDown:"心率下降 {n} 次/分。",hrUp:"心率上升 {n} 次/分。",
-  doneLine2:"你完成了 {m}的{x}。",modeTimer:"静坐",
-  calG:"改用 Google 日历",calI:"加入我的手机日历",calHint:"手机日历会打开并填好今天的练习，点“保存”或“添加”即可。",measureAfter:"练习后测量（1 分钟）",
-  calTitle:"\u2713 已完成静心练习 \u00b7 {x} \u00b7 {m}",calDesc:"慈济 静心呼吸\n\n已完成：{x}，{m}。",calCalm:"平静指数：{a} \u2192 {b}",
+  doneLine2:"你完成了 {m}的{x}。",doneLineP:"你完成了 {m}的{x}（原定 {p}）。",modeTimer:"静坐",appName2:"慈济 静心呼吸",cont:"继续",
+  doneCal:"完成 \u00b7 加入我的手机日历",closeNoCal:"不加入日历，直接关闭",measureCalm:"测一测平静指数（1 分钟）",
+  calDone:"\u2705 已完成：{x}，{m}",calDoneP:"\u2705 已完成：{x}，{m}（原定 {p}）",calVitals:"心率 {h1} \u2192 {h2} 次/分 \u00b7 心率变异性 {v1} \u2192 {v2} 毫秒",calOne:"平静指数：{s}/100（{l}）\u00b7 心率 {h} 次/分 \u00b7 心率变异性 {v} 毫秒",calTitleR:"\u2764\uFE0F 平静指数 {s}/100",
+  calG:"改用 Google 日历",calI:"加入我的手机日历",calHint:"日历会打开，并填好今天的练习、平静指数和一句勉励语，点“保存”即可。",measureAfter:"练习后测量（1 分钟）",
+  calTitle:"\u2713 已完成静心练习 \u00b7 {x} \u00b7 {m}",calDesc:"慈济 静心呼吸\n\n已完成：{x}，{m}。",calCalm:"平静指数：练习前 {a} \u2192 练习后 {b}",
   tooShort:"练习时间太短，没有记录。准备好了随时再来。",
   quotes:["每一次平静的呼吸，都是送给自己的小礼物。","心静了，看事情就更清楚。","慢下来，此刻就是最好的地方。","每天一小步，成就平和坚强的心。","吸进善意，呼出烦忧。","今天温柔待己，也温柔待人。","平静，从一次缓慢的呼吸开始。","今天你为自己留了时间，这很重要。","心怀感恩，心自安宁。","让此刻的宁静，陪你走过今天。"],
   tBreathe:"呼吸",tSounds:"声音",tTimer:"计时",tProgress:"进度"}
@@ -735,62 +755,107 @@ function finishTimer(full){
   showDone(timer.elapsed); if(voiceOn&&humanLang())$('subline').textContent=L().tEnd[0];
 }
 
-/* ---------- done card: quote + calendar ---------- */
+/* ---------- done card: holistic quote + calendar ---------- */
+const QI={ /* simple line icons for the quote themes */
+  lotus:'<path d="M12 19c-4 0-7-2.5-8-6 2.5-.3 5 .7 6.5 2.5M12 19c4 0 7-2.5 8-6-2.5-.3-5 .7-6.5 2.5M12 19c-2-2-2.8-5.5 0-10 2.8 4.5 2 8 0 10z"/>',
+  leaf:'<path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14zM5 19l7-7"/>',
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+  wind:'<path d="M3 9h11a3 3 0 1 0-3-3M3 13h15a3 3 0 1 1-3 3M3 17h7"/>',
+  drop:'<path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/>',
+  hands:'<path d="M7 20v-5l-3-4.5a1.5 1.5 0 0 1 2.5-1.7L9 12V5.5a1.5 1.5 0 0 1 3 0M17 20v-5l3-4.5a1.5 1.5 0 0 0-2.5-1.7L15 12V5.5a1.5 1.5 0 0 0-3 0"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/>',
+  moon:'<path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/>',
+  mountain:'<path d="M3 19l6-10 4 6 2.5-3.5L21 19z"/><circle cx="17" cy="6" r="1.6"/>',
+  sprout:'<path d="M12 20v-8M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 14c0-3.5 2.5-5.5 6.5-5.5 0 3.5-2.5 5.5-6.5 5.5z"/>'
+};
+const QUOTES=[ // [icon, calendar emoji, EN theme, ZH theme, EN, ZH]
+  ['lotus','\u{1FAB7}','Mind','心','When the mind is still, wisdom has room to grow.','心静下来，智慧才有空间生长。'],
+  ['leaf','\u{1F343}','Body','身','Your body heard every slow breath. Thank it for carrying you today.','身体听见了每一次缓慢的呼吸，感谢它今天一路陪着你。'],
+  ['heart','\u{1F497}','Heart','情','A calm heart turns ordinary moments into gentle ones.','心平气和，平凡的时刻也变得温柔。'],
+  ['wind','\u{1F32C}\uFE0F','Breath','息','Breathe in what is new. Breathe out what you no longer need.','吸进新的一刻，呼出不再需要的一切。'],
+  ['drop','\u{1F4A7}','Nature','自然','Be like water: soft, steady, and always finding a way.','像水一样：柔软、稳定，总能找到出路。'],
+  ['hands','\u{1F64F}','Gratitude','感恩','Gratitude quietly nourishes the heart.','感恩，静静地滋养着心。'],
+  ['sun','\u2600\uFE0F','Present','当下','This moment is enough, and so are you.','此刻已经足够，你也已经足够。'],
+  ['moon','\u{1F319}','Rest','休息','Rest is not idleness. It is how we grow strong again.','休息不是懒惰，而是让自己重新变得强壮。'],
+  ['mountain','\u26F0\uFE0F','Balance','平衡','Balance is built from small, steady habits, one day at a time.','平衡来自每天小小的、持续的好习惯。'],
+  ['sprout','\u{1F331}','Growth','成长','Every calm minute is a seed. Keep watering it.','每一分钟的平静都是一颗种子，记得天天浇灌。'],
+  ['heart','\u{1F91D}','Kindness','善','Peace inside becomes kindness outside.','内心的平静，会化成对人的善意。'],
+  ['lotus','\u{1FAB7}','Clarity','明','Like the lotus, rise clear and calm from whatever surrounds you.','像莲花一样，无论环境如何，都能清净安然。']
+];
+const qIcon=(k,cls='')=>`<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${QI[k]}</svg>`;
 const ICO_CAL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9 14.5l2 2 4-4"/></svg>';
 const ICO_HEART='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
+const ICO_CHECK='<svg class="ok" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#E3BE73"/><path d="M19 33l9 9 17-19" fill="none" stroke="#021A2E" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 let lastDone=null;
 const durText=sec=>sec>=60?fmt(L().doneMinutes,{n:Math.round(sec/60)}):fmt(L().doneSec,{n:Math.round(sec)});
 const modeName=d=>d.mode==='timer'?L().modeTimer:L().p[d.pat][0];
+function sessReadings(){ // Calm Pulse readings that belong to the session just finished
+  if(!lastDone)return {};
+  const st=lastDone.start.getTime(), b=cpData.before, a=cpData.after;
+  const B=b&&b.at>=st-20*60e3&&b.at<=st+60e3?b:null, A=a&&a.at>=st?a:null;
+  return {B,A};
+}
 function showDone(sec){
   $('stage').hidden=true; $('ctrls').hidden=true; $('subline').textContent=''; $('left').textContent='';
-  lastDone={mode:sess.mode,pat,start:sessStart,sec:Math.round(sec),quote:Math.floor(Math.random()*T.en.quotes.length),beforeAt:sessBeforeAt};
+  const planned=sess.mode==='timer'?timer.total:sess.total;
+  lastDone={mode:sess.mode,pat,start:sessStart,sec:Math.round(sec),planned:Math.round(planned||0),q:Math.floor(Math.random()*QUOTES.length)};
   const el=document.createElement('div'); el.className='done'; el.id='doneCard';
   el.innerHTML=doneHTML(); $('session').insertBefore(el,$('subline'));
 }
+function refreshDone(){ const dc=$('doneCard'); if(dc&&lastDone)dc.innerHTML=doneHTML() }
 function doneHTML(){
-  const d=lastDone, ok=d.sec>=30, m=durText(d.sec);
-  return `${STAR}<h3>${L().doneT}</h3>`+
-    (ok?`<p>${fmt(L().doneLine2,{m,x:modeName(d)})}</p>`:`<p>${L().tooShort}</p>`)+
-    `<p class="quote">\u201c${L().quotes[d.quote]}\u201d</p>`+
-    `<div class="acts">`+
-    (ok?`<button class="d-cal" id="calI">${ICO_CAL}<span>${L().calI}</span></button><button class="d-alt" id="calG"><span>${L().calG}</span></button>`:'')+
-    `<button class="d-alt" id="doneAfter">${ICO_HEART}<span>${L().measureAfter}</span></button>`+
-    `<button class="d-alt" id="doneClose"><span>${L().close}</span></button></div>`+
-    (ok?`<small class="hint">${L().calHint}</small>`:'');
+  const d=lastDone, ok=d.sec>=10, q=QUOTES[d.q], zh=lang==='zh', {B,A}=sessReadings();
+  const partial=d.planned&&d.sec<d.planned-5;
+  const line=ok?fmt(partial?L().doneLineP:L().doneLine2,{m:durText(d.sec),x:modeName(d),p:durText(d.planned)}):L().tooShort;
+  let res='';
+  if(B&&A) res=`<div class="d-res"><div><span>${L().cpBefore}</span><b>${B.score}</b></div><span class="arr">→</span><div><span>${L().cpAfter}</span><b>${A.score}</b></div><p>${cmpSentence(B,A)}</p></div>`;
+  else if(A) res=`<div class="d-res"><div><span>${L().cpTitle}</span><b>${A.score}</b></div><p>${cpLevel(A.score)} · ${Math.round(A.hr)} bpm</p></div>`;
+  return `${ICO_CHECK}<h3>${L().doneT}</h3><p class="d-line">${line}</p>${res}
+    <figure class="d-quote">${qIcon(q[0],'qi')}<figcaption>${zh?q[3]:q[2]}</figcaption><blockquote>${zh?q[5]:q[4]}</blockquote></figure>
+    <div class="acts">`+
+    (B&&!A?`<button class="d-go" id="doneAfter">${ICO_HEART}<span>${L().measureAfter}</span></button>`:'')+
+    (ok?`<button class="d-cal" id="calI">${ICO_CAL}<span>${L().doneCal}</span></button><small class="hint">${L().calHint}</small><button class="d-alt" id="calG"><span>${L().calG}</span></button>`:'')+
+    (!B&&!A&&ok?`<button class="d-alt" id="doneAfter">${ICO_HEART}<span>${L().measureCalm}</span></button>`:'')+
+    `<button class="d-link" id="doneClose">${ok?L().closeNoCal:L().close}</button></div>`;
 }
-function calText(){
-  const d=lastDone, m=durText(d.sec), x=modeName(d);
-  let desc=fmt(L().calDesc,{x,m})+'\n\n\u201c'+L().quotes[d.quote]+'\u201d';
-  const b=cpData.before, a=cpData.after;
-  if(b&&a&&a.at>b.at&&b.at>=d.start.getTime()-3*3600e3) desc+='\n\n'+fmt(L().calCalm,{a:b.score,b:a.score})+'. '+cmpSentence(b,a);
-  return {title:fmt(L().calTitle,{x,m}),desc};
-}
+/* ---- calendar payloads ---- */
 const utc=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-function calTimes(){const st=lastDone.start, en=new Date(st.getTime()+Math.max(60,lastDone.sec)*1000); return [st,en]}
-function openGoogleCal(){
-  const {title,desc}=calText(), [st,en]=calTimes();
-  const url='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+utc(st)+'/'+utc(en)+'&details='+encodeURIComponent(desc);
-  const w=window.open(url,'_blank'); if(w){try{w.opener=null}catch(e){}} else location.href=url;
+function calSession(){
+  const d=lastDone, q=QUOTES[d.q], zh=lang==='zh', x=modeName(d), m=durText(d.sec), {B,A}=sessReadings();
+  const partial=d.planned&&d.sec<d.planned-5;
+  let desc=L().appName2+' \u{1FAB7}\n\n'+fmt(partial?L().calDoneP:L().calDone,{x,m,p:durText(d.planned)});
+  if(B&&A) desc+='\n\n'+fmt(L().calCalm,{a:B.score,b:A.score})+'\n'+cmpSentence(B,A)+'\n'+fmt(L().calVitals,{h1:Math.round(B.hr),h2:Math.round(A.hr),v1:Math.round(B.rmssd),v2:Math.round(A.rmssd)});
+  else if(A) desc+='\n\n'+fmt(L().calOne,{s:A.score,l:cpLevel(A.score),h:Math.round(A.hr),v:Math.round(A.rmssd)});
+  desc+='\n\n'+q[1]+' '+(zh?q[3]:q[2])+'\n\u201c'+(zh?q[5]:q[4])+'\u201d';
+  const st=d.start, en=new Date(st.getTime()+Math.max(60,d.sec)*1000);
+  return {title:fmt(L().calTitle,{x,m}),desc,st,en};
 }
-function icsText(){
-  const {title,desc}=calText(), [st,en]=calTimes(), esc=t=>t.replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/([,;])/g,'\\$1');
+function calReading(r){
+  const b=cpData.before, zh=lang==='zh', q=QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  let desc=L().appName2+' \u{1FAB7}\n\n'+fmt(L().calOne,{s:r.score,l:cpLevel(r.score),h:Math.round(r.hr),v:Math.round(r.rmssd)});
+  if(CP.kind==='after'&&b&&b.at<r.at) desc+='\n'+fmt(L().calCalm,{a:b.score,b:r.score})+'\n'+cmpSentence(b,r);
+  desc+='\n\n'+q[1]+' \u201c'+(zh?q[5]:q[4])+'\u201d';
+  const st=new Date(r.at-60e3), en=new Date(r.at);
+  return {title:fmt(L().calTitleR,{s:r.score}),desc,st,en};
+}
+function icsText(p){
+  const esc=t=>t.replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/([,;])/g,'\\$1');
   return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Tzu Chi Singapore//Calm Breath//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
-    'UID:'+st.getTime()+'-calmbreath@tzuchi-singapore','DTSTAMP:'+utc(new Date()),'DTSTART:'+utc(st),'DTEND:'+utc(en),
-    'SUMMARY:'+esc(title),'DESCRIPTION:'+esc(desc),'TRANSP:TRANSPARENT','END:VEVENT','END:VCALENDAR'].join('\r\n');
+    'UID:'+p.st.getTime()+'-calmbreath@tzuchi-singapore','DTSTAMP:'+utc(new Date()),'DTSTART:'+utc(p.st),'DTEND:'+utc(p.en),
+    'SUMMARY:'+esc(p.title),'DESCRIPTION:'+esc(p.desc),'TRANSP:TRANSPARENT','END:VEVENT','END:VCALENDAR'].join('\r\n');
 }
+const gcalURL=p=>'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(p.title)+'&dates='+utc(p.st)+'/'+utc(p.en)+'&details='+encodeURIComponent(p.desc);
+function openGoogleCal(p){ const w=window.open(gcalURL(p),'_blank'); if(w){try{w.opener=null}catch(e){}} else location.href=gcalURL(p) }
 const isIOS=()=>/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const isAndroid=()=>/Android/i.test(navigator.userAgent);
-function addPhoneCal(){
-  const {title,desc}=calText(), [st,en]=calTimes();
-  if(isAndroid()){
-    // opens the phone's own calendar app on a new, pre-filled event
-    const e=encodeURIComponent, g='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+e(title)+'&dates='+utc(st)+'/'+utc(en)+'&details='+e(desc);
-    location.href='intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;S.title='+e(title)+';S.description='+e(desc)+';l.beginTime='+st.getTime()+';l.endTime='+en.getTime()+';S.browser_fallback_url='+e(g)+';end';
-    return;
-  }
-  if(isIOS()){ location.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(icsText()); return }
-  const blob=new Blob([icsText()],{type:'text/calendar;charset=utf-8'}), url=URL.createObjectURL(blob), a=document.createElement('a');
-  a.href=url; a.download='meditation-'+dayKey(st)+'.ics'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
+function addPhoneCal(p){
+  if(isAndroid()){ // opens the phone's own calendar app on a new, pre-filled event
+    const e=encodeURIComponent;
+    location.href='intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;S.title='+e(p.title)+';S.description='+e(p.desc)+';l.beginTime='+p.st.getTime()+';l.endTime='+p.en.getTime()+';S.browser_fallback_url='+e(gcalURL(p))+';end';
+    return }
+  if(isIOS()){ location.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(icsText(p)); return } // Apple "Add to Calendar" sheet
+  const blob=new Blob([icsText(p)],{type:'text/calendar;charset=utf-8'}), url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download='meditation-'+dayKey(p.st)+'.ics'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
 }
 
 /* ---------- Calm Pulse: analysis (per spec, reproduced exactly) ---------- */
@@ -844,8 +909,8 @@ function renderPulse(){
 
 /* ---------- Calm Pulse: measurement ---------- */
 const CP={kind:null,demo:false,then:null,stream:null,track:null,cv:null,cx:null,run:false,state:'idle',ts:[],rv:[],gv:[],t0:0,miss:0,seen:0,lastLive:0,timer:0,raf:0,demoT:0,demoBeats:[]};
-function cpOpen(kind,then){
-  CP.kind=kind; CP.then=then||null; CP.demo=kind==='demo';
+function cpOpen(kind,then,thenLabel){
+  CP.kind=kind; CP.then=then||null; CP.thenLabel=thenLabel||null; CP.demo=kind==='demo';
   $('pulse').hidden=false; $('plIntro').hidden=false; $('plMeasure').hidden=true; $('plResult').hidden=true; $('plErr').hidden=true;
   $('plTitle').textContent=CP.demo?L().plDemoT:kind==='before'?L().plBefore:L().plAfter;
   $('plDemo').hidden=CP.demo; $('pulse').scrollTop=0; $('plCancel').textContent=then?L().skip:L().cancel;
@@ -854,6 +919,19 @@ function cpOpen(kind,then){
 function cpClose(){ cpStop(); $('pulse').hidden=true; renderPulse(); }
 function cpErr(msg){ cpStop(); $('plIntro').hidden=false; $('plMeasure').hidden=true; const e=$('plErr'); e.textContent=msg; e.hidden=false; }
 function cpReset(){ CP.ts=[];CP.rv=[];CP.gv=[];CP.t0=0;CP.miss=0;CP.lastLive=0;CP.state='wait'; $('plHr').textContent='–'; $('plSec').textContent='60'; $('plArc').style.strokeDashoffset=326.7 }
+async function cpMainBackCamera(){
+  try{
+    const devs=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='videoinput'&&d.deviceId);
+    if(devs.length<2)return null;
+    const saved=LS.get('camId',null); if(saved&&devs.some(d=>d.deviceId===saved))return saved;
+    const lab=d=>(d.label||'').toLowerCase().trim();
+    const back=devs.filter(d=>/back|rear|environment|后置|後置|背面/.test(lab(d))); if(!back.length)return null;
+    return (back.find(d=>/^back camera$|^后置相机$|^後置相機$|^後置鏡頭$/.test(lab(d)))          // iPhone: the plain wide lens
+         || back.find(d=>/camera2 0\b|camera 0\b/.test(lab(d)))                                  // Android: main lens with the flash
+         || back.find(d=>!/ultra|wide|tele|macro|dual|triple|depth|超广|廣角|长焦|長焦|微距|双|三/.test(lab(d)))
+         || back[0]).deviceId;
+  }catch(e){return null}
+}
 async function cpBegin(){
   $('plIntro').hidden=true; $('plMeasure').hidden=false; $('plTip').hidden=true; cpReset(); CP.run=true; wake(true);
   $('plFake').hidden=!CP.demo; $('plVideo').hidden=CP.demo;
@@ -861,12 +939,23 @@ async function cpBegin(){
   $('plStatus').textContent=L().stStarting; $('plCam').classList.remove('on');
   if(!window.isSecureContext||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia) return cpErr(L().errInsecure);
   try{
-    const st=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:320},height:{ideal:240},frameRate:{ideal:30}}});
+    const VID={width:{ideal:320},height:{ideal:240},frameRate:{ideal:30}};
+    let st=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},...VID}});
     if(!CP.run){st.getTracks().forEach(t=>t.stop());return}
-    CP.stream=st; CP.track=st.getVideoTracks()[0];
+    // Phones with several back lenses can hand us a "virtual" camera that hops between lenses
+    // when a finger is close. Re-open the single main back lens (the one beside the flash).
+    const want=await cpMainBackCamera(), cur=(st.getVideoTracks()[0].getSettings?st.getVideoTracks()[0].getSettings().deviceId:null);
+    if(want&&want!==cur){ try{ const s2=await navigator.mediaDevices.getUserMedia({audio:false,video:{deviceId:{exact:want},...VID}}); st.getTracks().forEach(t=>t.stop()); st=s2 }catch(e){} }
+    if(!CP.run){st.getTracks().forEach(t=>t.stop());return}
+    CP.stream=st; CP.track=st.getVideoTracks()[0]; CP.camId=CP.track.getSettings?CP.track.getSettings().deviceId:null;
     const v=$('plVideo'); v.srcObject=st; v.muted=true; v.setAttribute('playsinline',''); await v.play().catch(()=>{});
     let torch=false; try{ const cap=CP.track.getCapabilities?CP.track.getCapabilities():{}; if(cap&&cap.torch){ await CP.track.applyConstraints({advanced:[{torch:true}]}); torch=true } }catch(e){}
     if(!torch){ $('plTip').textContent=L().tipTorch; $('plTip').hidden=false }
+    // stop focus/white-balance hunting once the light has settled (where the phone allows it)
+    setTimeout(()=>{ try{ const c=CP.track&&CP.track.getCapabilities?CP.track.getCapabilities():{}, adv={};
+      if(c.focusMode&&c.focusMode.includes('manual'))adv.focusMode='manual';
+      if(c.whiteBalanceMode&&c.whiteBalanceMode.includes('manual'))adv.whiteBalanceMode='manual';
+      if(CP.track&&Object.keys(adv).length)CP.track.applyConstraints({advanced:[adv]}).catch(()=>{}) }catch(e){} },1200);
     if(!CP.cv){ CP.cv=document.createElement('canvas'); CP.cv.width=40; CP.cv.height=40; CP.cx=CP.cv.getContext('2d',{willReadFrequently:true}) }
     $('plStatus').textContent=L().stWait; cpLoop();
   }catch(e){
@@ -930,8 +1019,9 @@ function cpFinish(){
   const ts=CP.ts.slice(), vals=cpCh().slice(); cpStop(); CP.state='idle';
   const res=cpAnalyze(ts,vals), box=$('plResult'); $('plMeasure').hidden=true; box.hidden=false; $('pulse').scrollTop=0;
   if(!res||res.quality==='poor'||!res.rmssd||!res.hr){
-    box.innerHTML=`<p class="pl-err">${L().poor}</p><div class="pl-acts"><button class="pl-btn" id="plRetry">${L().tryAgain}</button><button class="pl-btn2" id="plDone">${CP.then?L().offerSkip:L().done}</button></div>`; return }
-  const r={score:cpScore(res.rmssd),hr:res.hr,rmssd:res.rmssd,at:Date.now()};
+    box.innerHTML=`<p class="pl-err">${L().poor}</p><div class="pl-acts"><button class="pl-btn" id="plRetry">${L().tryAgain}</button><button class="pl-btn2" id="plDone">${CP.then?(CP.kind==='before'?L().offerSkip:L().cont):L().done}</button></div>`; return }
+  const r={score:cpScore(res.rmssd),hr:res.hr,rmssd:res.rmssd,at:Date.now()}; CP.last=r;
+  if(!CP.demo&&CP.camId) LS.set('camId',CP.camId);
   let saved=L().demoNote, cmp='';
   if(!CP.demo){
     if(CP.kind==='before'){ cpData.before=r; cpData.after=null; sessBeforeAt=r.at; saved=L().savedBefore }
@@ -943,7 +1033,8 @@ function cpFinish(){
     <span class="pl-q ${res.quality}">${res.quality==='good'?L().qGood:L().qFair}</span>
     <div class="pl-stats"><div><b>${Math.round(r.hr)}<small> bpm</small></b><span>${L().rHr}</span></div><div><b>${Math.round(r.rmssd)}<small> ms</small></b><span>${L().rHrv}</span></div><div><b>${res.beats}</b><span>${L().rBeats}</span></div></div>
     ${cmp?`<p class="pl-cmp">${cmp}</p>`:''}<p class="pl-saved">${saved}</p>
-    <div class="pl-acts">${CP.then?`<button class="pl-btn" id="plGo">${L().beginNow}</button>`:`<button class="pl-btn" id="plDone">${L().done}</button>`}</div>`;
+    <div class="pl-acts">${CP.then?`<button class="pl-btn" id="plGo">${CP.thenLabel||L().beginNow}</button>`:
+      (CP.demo?`<button class="pl-btn" id="plDone">${L().done}</button>`:`<button class="pl-btn" id="plCal">${ICO_CAL}<span>${L().calI}</span></button><button class="pl-btn2" id="plDone">${L().done}</button>`)}</div>`;
 }
 let sessBeforeAt=0;
 function withOffer(fn){ if(!cpAsk){fn();return} offerThen=fn; $('offer').hidden=false }
@@ -952,7 +1043,7 @@ let offerThen=null;
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
   const t=e.target.closest('button'); if(!t)return;
-  if(t.dataset.lang){lang=t.dataset.lang;LS.set('lang',lang);render();const dc=$('doneCard');if(dc&&lastDone)dc.innerHTML=doneHTML();return}
+  if(t.dataset.lang){lang=t.dataset.lang;LS.set('lang',lang);render();refreshDone();return}
   if(t.dataset.p){pat=t.dataset.p;LS.set('pat',pat);render();return}
   if(t.dataset.m&&t.closest('#mins')){mins=+t.dataset.m;LS.set('mins',mins);render();return}
   if(t.dataset.m&&t.closest('#tmins')){tmins=+t.dataset.m;LS.set('tmins',tmins);render();return}
@@ -976,9 +1067,10 @@ document.addEventListener('click',e=>{
     case 'plCancel':{const f=CP.then;cpClose();if(f)f();}break;
     case 'plDone':{const f=CP.then;cpClose();if(f)f();}break;
     case 'plGo':{const f=CP.then;cpClose();if(f)f();}break;
-    case 'calG':openGoogleCal();break;
-    case 'calI':addPhoneCal();break;
-    case 'doneAfter':cpOpen('after');break;
+    case 'calG':openGoogleCal(calSession());break;
+    case 'calI':addPhoneCal(calSession());break;
+    case 'plCal':if(CP.last)addPhoneCal(calReading(CP.last));break;
+    case 'doneAfter':cpOpen('after',refreshDone,L().cont);break;
     case 'doneClose':silence();closeOverlay();render();break;
     case 'stopSound':stopAmbient();break;
     case 'pause':{const s=sess.mode==='timer'?timer:sess; s.paused=!s.paused; t.textContent=s.paused?L().resume:L().pause; if(s.paused){silence();$('orb').style.transitionDuration='0s'}; break}
